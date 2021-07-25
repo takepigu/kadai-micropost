@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
      public function microposts()
      {
-         return $this->hasMany(Microposts::class);
+         return $this->hasMany(Micropost::class);
      }
     
     /**
