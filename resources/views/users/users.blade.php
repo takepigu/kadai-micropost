@@ -12,10 +12,10 @@
                         {{-- ユーザ詳細ページへのリンク --}}
                         <p>{!! link_to_route('users.show', 'View profile', ['user' => $user->id]) !!}</p>
                     </div>
-                </div>x
+                </div>
             </li>
         @endforeach
     </ul>
     {{--ページネーションのリンク --}}
-    {{ $users->link() }}s
+    {{ $users->link() }}
 @endif
