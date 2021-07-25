@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * このユーザーが所有する投稿。（Micropostモデルとの関係を定義）
+     */
+     public function microposts()
+     {
+         return $this->hasMany(Microposts::class);
+     }
+    
+    /**
+     * このユーザーに関係するモデルの件数をロードする。
+     */
+    public function loadRelationshipCount()
+     { 
+         $this->loadCount('microposts');
+     }
 }
+
