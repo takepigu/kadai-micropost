@@ -135,7 +135,7 @@ class User extends Authenticatable
             //ユーザーのidもその配列に追加
             $userIds[] = $this->id;
             //それらのユーザーが所有する投稿に絞り込む
-            return Microppst::whereIn('user_id',$userIds);
+            return Micropost::whereIn('user_id',$userIds);
         }
 }
 
