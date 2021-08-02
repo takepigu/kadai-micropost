@@ -48,9 +48,9 @@ class User extends Authenticatable
     /**
      * このユーザーに関係するモデルの件数をロードする。
      */
-    public function loadRelationshipCount()
+    public function loadRelationshipCounts()
      { 
-         $this->loadCount('microposts','followings','followers');
+         $this->loadCount(['microposts','followings','followers']);
      }
     
     /**
