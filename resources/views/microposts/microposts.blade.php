@@ -19,7 +19,7 @@
                         {{--投稿削除ボタンのフォーム --}}
                         {!! Form::open(['route' =>['microposts.destroy',$micropost->id],'method' => 'delete']) !!}
                         {!! Form::submit('Delete',['class' =>'btn btn-danger btn-sm']) !!}
-                        {!! sForm::close() !!}
+                        {!! Form::close() !!}
                         @endif
                     </div>
                 </div>
