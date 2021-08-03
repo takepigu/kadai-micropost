@@ -33,10 +33,10 @@ class MicropostsController extends Controller
             'content' => 'required|max:255',
             ]);
             
-            //認証済みユーザー（閲覧者）の投稿として作成（リクエストされた値をもとに作成)
+            // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
             $request->user()->microposts()->create([
-                'content' => $request->content,
-                ]);
+            'content' => $request->content,
+            ]);
                 
             //前のURLへリダイレクトさせる
             return back();
