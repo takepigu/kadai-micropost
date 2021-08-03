@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('favorites','UsersController@favorites')->name('users.favorites'); //追加
     });
     
-    Route::resource('users','UsersController',['only'=>['index','show']]);
+   Route::resource('users','UsersController',['only'=>['index','show']]);
     
     //追加
     Route::group(['prefix'=>'microposts/{id}'],function() {
@@ -40,6 +40,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('unfavorite','FavoritesController@destroy')->name('favorites.unfavorite');
     });
     
-    
+     
     Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
 });
