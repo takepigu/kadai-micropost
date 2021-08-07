@@ -96,10 +96,10 @@ class UsersController extends Controller
           //ユーザーのお気に入り一覧を取得
           $favorites = $user->favorites()->paginate(10);
           
-          //フォロー一覧ビューでそれらを表示
+          //お気に入り一覧ビューでそれらを表示
           return view('users.favorites',[
               'user'=>$user,
-              'users'=>$favorites,
+              'microposts'=>$favorites, 
               ]);
       }
 }

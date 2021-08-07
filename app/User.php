@@ -140,36 +140,32 @@ class User extends Authenticatable
         
         public function favorites()
         {
-            return $this->belongsToMany(User::class, 'user_favorite','user_id','micropost_id')->withTimestamps();
+            return $this->belongsToMany(Micropost::class, 'micropost_favorite','user_id','favorite_id')->withTimestamps();
         }
         
-        public function favorite($userId)
+        public function favorite($micropostId)
         {
             //すでにお気に入りしているかの確認
-            $exist =$this->is_favoriting('userId');
-            //対象が自分自身かどうかの確認
-            $its_me =$this->id ==$userId;
+            $exist =$this->is_favoriting($micropostId);
             
-            if ($exist || $its_me) {
+            if ($exist) {
                 //すでにお気に入りしていればなにもしない
                 return false;
             }else {
                 //未お気に入りであればフォローする
-                $this->followings()->attach($userId);
+                $this->favorites()->attach($micropostId);
                 return true;
             }
         }
         
-        public function unfavorite($userId) 
+        public function unfavorite($micropostId) 
         {
             //すでにお気に入りしているかの確認
-            $exist = $this->is_following($userId);
-            //対象が自分自身かどうかの確認
-            $its_me = $this->id ==$userId;
-            
-            if($exist && $its_me) {
+            $exist = $this->is_favoriting($micropostId);
+        
+            if($exist) {
                 //すでにしていれお気に入りしていればお気に入りを外す
-                $this->favoritings()->detach($userId);
+                $this->favorites()->detach($micropostId);
                 return true;
             }else {
                 //未お気に入りであれば何もしない
@@ -177,10 +173,11 @@ class User extends Authenticatable
             }
         }
         
-        public function is_favoriting($userId)
+        public function is_favoriting($micropostId)
         {
             //お気に入り中ユーザーの中に$userIdのものが存在するか
-            return $this->favoritings()->where('favorite_id',$userId)->exists();
+            // Userクラスの中にfavoritingというメソッドがありません。多対多の関係でMicropostを取得するメソッドはなんでしょうか？（植西）
+            return $this->favorites()->where('favorite_id',$micropostId)->exists();
         }
 }
 

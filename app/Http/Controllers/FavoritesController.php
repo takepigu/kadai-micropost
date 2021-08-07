@@ -13,7 +13,7 @@ class FavoritesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
         //認証済みユーザー（閲覧者）が、idの投稿をお気に入りする
         \Auth::user()->favorite($id);
